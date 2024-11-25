@@ -30,7 +30,6 @@ def decrypt_files_in_repository(pass,ext = '.encrypted')
   Dir.chdir repo_home
   files = Dir.glob("./**/*#{ext}", File::FNM_PATHNAME)
   files.reject!{|f| f =~ /vendor/ }
-  binding.pry
   files.each do |f|
     decrypt_file(f, pass)
   end
