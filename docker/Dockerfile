@@ -4,7 +4,7 @@ RUN mkdir -p  /smtp_proxy/src
 COPY ../../ /smtp_proxy/
 
 WORKDIR /smtp_proxy/
-RUN apk add build-base ruby-dev imagemagick
+RUN apk add build-base ruby-dev imagemagick git 
 RUN bundle install
 RUN mkdir /var/log/smtp_proxy_server
 EXPOSE 2525
