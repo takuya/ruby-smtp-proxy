@@ -1,0 +1,11 @@
+.bin
+.idea
+Gemfile.lock
+vendor
+.rspec_status
+.env
+credentials/*.json
+credentials/*.yaml
+credentials/*.yml
+.bundle
+spec/sample/*.eml

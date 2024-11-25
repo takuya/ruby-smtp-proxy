@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# coding: utf-8
+### BEGIN INIT INFO
+# Provides:          smtp_proxy
+# Required-Start:    $local_fs $remote_fs $network
+# Required-Stop:     $local_fs $remote_fs $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: simple_smtp_proxy
+# Description:       Simple STMP Proxy by ruby
+### END INIT INFO
+
+
+__DIR__=$(dirname $( readlink -f $0 ) )
+__FILE__=$( readlink -f $0 )
+__REPOS__=$( readlink -f "${__DIR__}/../../")
+cd "${__REPOS__}"
+
+bundle exec ruby -W0 ./etc/init.d/smtp_proxy.rb $@;
+

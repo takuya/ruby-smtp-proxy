@@ -1,0 +1,15 @@
+services:
+  smtp-proxy:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: takuya/smtp_proxy:latest
+    container_name: smtp-proxy
+    volumes:
+      - ./var/log:/var/log/smtp_proxy_server
+    environment:
+      TZ: Asia/Tokyo
+      DOCKER_NETWORK: host
+      # LOG_LEVEL: "3"
+      # DEBUG: "true"
+    network_mode: host
