@@ -13,3 +13,5 @@ group :dev do
 end
 
 gem "daemons", "~> 1.4"
+gem "pry", "~> 0.15.0"
+
