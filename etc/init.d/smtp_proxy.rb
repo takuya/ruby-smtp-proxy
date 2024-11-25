@@ -17,15 +17,21 @@ require 'tempfile'
 require 'dotenv/load'
 require 'pry'
 
+require_relative '../../spec/encrypt-privary'
 def load_env
   wd = Dir.getwd
   repos_dir=File.realpath(File.dirname(__FILE__)+"/../../")
   Dir.chdir repos_dir
   Dotenv.load('.env', '.env.sample')
-  ENV['client_secret_path'] = File.realpath ENV['client_secret_path']
-  ENV['token_path'] = File.realpath ENV['token_path']
+  ENV['client_secret_path'] = File.expand_path ENV['client_secret_path']
+  ENV['token_path'] = File.expand_path ENV['token_path']
   ENV['user_id'] = ENV['user_id'].strip
+
+  unless File.exist?(ENV['client_secret_path']) || File.exists?(ENV['token_path'])
+    decrypt_files_in_repository(load_pass)
+  end
   raise "Empty file (#{ENV['token_path']})." unless YAML.load_file(ENV['token_path'])
+  ##
   ENV['user_id'] = YAML.load_file(ENV['token_path']).keys[0] if ENV['user_id'].empty?
   Dir.chdir wd
 end

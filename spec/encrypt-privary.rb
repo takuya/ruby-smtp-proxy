@@ -25,23 +25,24 @@ def encrypt_file(src, password, ext = ".encrypted", iter = 1000 * 1000)
   File.unlink f_in
 end
 
-def decrypt_files_in_repository(ext = '.encrypted')
+def decrypt_files_in_repository(pass,ext = '.encrypted')
   repo_home = File.realpath(File.dirname(File.dirname(__FILE__) + '/../..'))
   Dir.chdir repo_home
   files = Dir.glob("./**/*#{ext}", File::FNM_PATHNAME)
   files.reject!{|f| f =~ /vendor/ }
+  binding.pry
   files.each do |f|
-    decrypt_file(f, $pass)
+    decrypt_file(f, pass)
   end
 
 end
 
-def encrypt_files_in_repository(*patterns)
+def encrypt_files_in_repository(pass,*patterns)
   repo_home = File.realpath(File.dirname(File.dirname(__FILE__) + '/../..'))
   Dir.chdir repo_home
   files = patterns.map { |pat| Dir.glob(pat) }.flatten.sort
   files.each do |f|
-    encrypt_file(f, $pass)
+    encrypt_file(f, pass)
   end
 end
 def load_pass
@@ -54,6 +55,6 @@ end
 
 ## main
 if __FILE__==$0
-  $pass = load_pass
-  encrypt_files_in_repository('./spec/**/*.jpg', './spec/**/*.eml','./spec/**/*.json', './credentials/*.yaml', './credentials/*.json')
+  pass = load_pass
+  encrypt_files_in_repository(pass,'./spec/**/*.jpg', './spec/**/*.eml','./spec/**/*.json', './credentials/*.yaml', './credentials/*.json')
 end

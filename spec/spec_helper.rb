@@ -33,8 +33,7 @@ RSpec.configure do |config|
   ENV['token_path'] = File.expand_path ENV['token_path']
   ENV['user_id'] = ENV['user_id'].strip
   ##
-  $pass = load_pass
-  decrypt_files_in_repository
+  decrypt_files_in_repository(load_pass)
   #
   ENV['user_id'] = YAML.load_file(ENV['token_path']).keys[0] if ENV['user_id'].empty?
   # Thread.abort_on_exception = true
