@@ -13,7 +13,7 @@ require "googleauth/stores/file_token_store"
 require_relative '../lib/fax-gmail-proxy'
 
 ## GitHub に見つからないように暗号化。
-require_relative './crypt-privacy'
+require_relative './encrypt-privacy'
 
 
 RSpec.configure do |config|
