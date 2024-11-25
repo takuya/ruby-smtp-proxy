@@ -68,15 +68,15 @@ options ={
 
 }
 
-Daemons.run_proc("smtp_proxy_server", options ){
-  begin
+# Daemons.run_proc("smtp_proxy_server", options ){
+#   begin
     server = FaxGmailProxy.new(**server_args)
     server.start
     server.join
-  rescue => e
-    p e
-    raise e
-    #retry
-  end
-}
+#   rescue => e
+#     p e
+#     raise e
+#     #retry
+#   end
+# }
 

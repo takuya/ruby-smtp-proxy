@@ -36,8 +36,14 @@ class FaxGmailProxy<Takuya::GMailForwarderServer
       return [envelope_from, envelope_to, original_mail]
     end
     ##
-    modified_mail = self.class.modify_mail(original_mail)
-    [envelope_from, envelope_to, modified_mail]
+    begin
+      modified_mail = self.class.modify_mail(original_mail)
+      [envelope_from, envelope_to, modified_mail]
+    rescue => e
+      $stderr.puts e.backtrace
+      File.open('/tmp/test.eml', 'w') { |f| f.write original_mail }
+      [envelope_from, envelope_to, original_mail]
+    end
   end
 
   # @param mail [Mail::Message]
@@ -59,5 +65,3 @@ class FaxGmailProxy<Takuya::GMailForwarderServer
   end
 
 end
-
-# sterling-sanded-ungloved
