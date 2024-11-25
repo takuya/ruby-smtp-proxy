@@ -2,7 +2,7 @@ services:
   smtp-proxy:
     build:
       context: docker
-      dockerfile: docker/Dockerfile
+      dockerfile: Dockerfile
     image: takuya/smtp_proxy:latest
     container_name: smtp-proxy
     volumes:
