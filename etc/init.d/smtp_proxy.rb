@@ -17,7 +17,7 @@ require 'tempfile'
 require 'dotenv/load'
 require 'pry'
 
-require_relative '../../spec/encrypt-privary'
+require_relative '../../spec/encrypt-privacy'
 def load_env
   wd = Dir.getwd
   repos_dir=File.realpath(File.dirname(__FILE__)+"/../../")
