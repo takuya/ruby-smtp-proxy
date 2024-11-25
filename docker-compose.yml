@@ -10,6 +10,7 @@ services:
     environment:
       TZ: Asia/Tokyo
       DOCKER_NETWORK: host
+      openssl_enc_pass: "dummy"
       # LOG_LEVEL: "3"
       # DEBUG: "true"
     network_mode: host
